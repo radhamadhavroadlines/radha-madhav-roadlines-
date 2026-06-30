@@ -1,7 +1,298 @@
-body{font-family:Arial;margin:0;padding:0;scroll-behavior:smooth}
-header{background:#111;color:#fff;text-align:center;padding:40px}
-nav{background:#b30000;padding:10px;text-align:center}
-nav a{color:white;margin:0 15px;text-decoration:none;font-weight:bold}
-section{padding:40px}
-.btn{display:inline-block;margin-top:10px;padding:10px 20px;background:#25D366;color:#fff;text-decoration:none;border-radius:5px}
-footer{background:#111;color:white;text-align:center;padding:20px}
+/* ===========================
+   RADHA MADHAV ROADLINES
+=========================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f5f7fb;
+color:#222;
+line-height:1.6;
+}
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+/* Header */
+
+header{
+background:#003366;
+position:fixed;
+width:100%;
+top:0;
+left:0;
+z-index:999;
+box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+header .container{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 0;
+}
+
+.logo img{
+height:65px;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
+
+nav ul li a{
+color:#fff;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#FFD700;
+}
+
+.call-btn{
+background:#ff3c00;
+padding:12px 25px;
+border-radius:50px;
+color:#fff;
+text-decoration:none;
+font-weight:bold;
+transition:.3s;
+}
+
+.call-btn:hover{
+background:#e12f00;
+}
+
+/* Hero */
+
+.hero{
+height:100vh;
+background:url("images/hero.jpg") center center/cover no-repeat;
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+}
+
+.overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.60);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+color:#fff;
+}
+
+.hero-content h1{
+font-size:58px;
+font-weight:800;
+margin-bottom:15px;
+}
+
+.hero-content h3{
+font-size:25px;
+letter-spacing:3px;
+margin-bottom:10px;
+}
+
+.hero-content p{
+font-size:20px;
+margin-bottom:30px;
+}
+
+.btn,
+.btn2{
+display:inline-block;
+padding:15px 35px;
+margin:10px;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+transition:.3s;
+}
+
+.btn{
+background:#ff3c00;
+color:#fff;
+}
+
+.btn:hover{
+background:#ff5722;
+}
+
+.btn2{
+background:#25D366;
+color:#fff;
+}
+
+.btn2:hover{
+background:#1fb657;
+}
+
+/* Counter */
+
+.counter{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+padding:70px 10%;
+background:#fff;
+}
+
+.box{
+background:#003366;
+color:#fff;
+padding:40px;
+text-align:center;
+border-radius:15px;
+transition:.3s;
+}
+
+.box:hover{
+transform:translateY(-10px);
+}
+
+.box h2{
+font-size:42px;
+color:#FFD700;
+}
+
+/* Sections */
+
+section{
+padding:90px 0;
+}
+
+section h2{
+text-align:center;
+font-size:40px;
+color:#003366;
+margin-bottom:40px;
+}
+
+/* Cards */
+
+.service-grid,
+.fleet-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card,
+.fleet-card{
+background:#fff;
+padding:35px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.card:hover,
+.fleet-card:hover{
+transform:translateY(-10px);
+}
+
+.card i{
+font-size:50px;
+color:#ff3c00;
+margin-bottom:20px;
+}
+
+/* Clients */
+
+.clients{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:30px;
+align-items:center;
+}
+
+.clients img{
+width:100%;
+max-width:140px;
+margin:auto;
+filter:grayscale(100%);
+transition:.3s;
+}
+
+.clients img:hover{
+filter:none;
+transform:scale(1.05);
+}
+
+/* Contact */
+
+#contact{
+background:#003366;
+color:#fff;
+text-align:center;
+}
+
+#contact h2{
+color:#fff;
+}
+
+.whatsapp-btn{
+display:inline-block;
+margin-top:20px;
+padding:15px 35px;
+background:#25D366;
+color:#fff;
+text-decoration:none;
+border-radius:50px;
+font-weight:bold;
+}
+
+/* Footer */
+
+footer{
+background:#001d3d;
+color:#fff;
+text-align:center;
+padding:25px;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.hero-content h1{
+font-size:36px;
+}
+
+.hero-content p{
+font-size:16px;
+}
+
+.counter{
+grid-template-columns:repeat(2,1fr);
+}
+
+.clients{
+grid-template-columns:repeat(2,1fr);
+}
+
+nav{
+display:none;
+}
+
+}
