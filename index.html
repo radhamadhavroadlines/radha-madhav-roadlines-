@@ -443,45 +443,39 @@ WhatsApp Available 24×7
 
 <div class="contact-form">
 
-<form id="contact-form">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-<input type="text" name="name" placeholder="Your Name" required>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-<input type="email" name="email" placeholder="Email Address" required>
+    emailjs.init({
+        publicKey: "x2vTF8_bZkld62d8R"
+    });
 
-<input type="tel" name="phone" placeholder="Mobile Number" required>
+    const form = document.getElementById("contact-form");
 
-<input type="text" name="company" placeholder="Company Name">
+    form.addEventListener("submit", function (e) {
 
-<input type="text" name="pickup" placeholder="Pickup Location" required>
+        e.preventDefault();
 
-<input type="text" name="delivery" placeholder="Delivery Location" required>
+        emailjs.sendForm(
+            "service_tdgt8em",
+            "template_nrwnfhj",
+            form
+        )
+        .then(function () {
+            alert("Enquiry Sent Successfully!");
+            form.reset();
+        })
+        .catch(function (error) {
+            console.log(error);
+            alert("Error: " + error.text);
+        });
 
-<select name="vehicle" required>
-<option value="">Select Vehicle</option>
-<option>20 Feet Truck</option>
-<option>22 Feet Truck</option>
-<option>32 Feet Truck</option>
-<option>Trailer</option>
-</select>
+    });
 
-<input type="text" name="material" placeholder="Material Type">
-
-<textarea name="message" rows="6" placeholder="Write Your Requirement"></textarea>
-
-<button type="submit">
-Send Enquiry
-</button>
-
-</form>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
+});
+</script>
 <!-- ================= MAP ================= -->
 
 <section id="map">
