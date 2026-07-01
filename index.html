@@ -443,31 +443,37 @@ WhatsApp Available 24×7
 
 <div class="contact-form">
 
-<form>
+<form id="contact-form">
 
-<input type="text"
-placeholder="Your Name"
-required>
+<input type="text" name="name" placeholder="Your Name" required>
 
-<input type="email"
-placeholder="Email Address">
+<input type="email" name="email" placeholder="Email Address" required>
 
-<input type="tel"
-placeholder="Mobile Number"
-required>
+<input type="tel" name="phone" placeholder="Mobile Number" required>
 
-<textarea
-placeholder="Write Your Requirement"
-rows="6"></textarea>
+<input type="text" name="company" placeholder="Company Name">
+
+<input type="text" name="pickup" placeholder="Pickup Location" required>
+
+<input type="text" name="delivery" placeholder="Delivery Location" required>
+
+<select name="vehicle" required>
+<option value="">Select Vehicle</option>
+<option>20 Feet Truck</option>
+<option>22 Feet Truck</option>
+<option>32 Feet Truck</option>
+<option>Trailer</option>
+</select>
+
+<input type="text" name="material" placeholder="Material Type">
+
+<textarea name="message" rows="6" placeholder="Write Your Requirement"></textarea>
 
 <button type="submit">
-
 Send Enquiry
-
 </button>
 
 </form>
-
 </div>
 
 </div>
@@ -547,6 +553,48 @@ All Rights Reserved.
 
 <script src="script.js"></script>
 
-</body>
+<script src="script.js"></script>
 
+<!-- EmailJS Start -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+
+emailjs.init({
+    publicKey: "x2vTF8_bZkld62d8R",
+});
+
+document.getElementById("contact-form").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+emailjs.sendForm(
+"service_8a3nxf2",
+"template_nrwnfhj",
+this
+)
+
+.then(function(){
+
+alert("Thank you! Your enquiry has been sent successfully.");
+
+document.getElementById("contact-form").reset();
+
+})
+
+.catch(function(error){
+
+alert("Something went wrong.");
+
+console.log(error);
+
+});
+
+});
+
+</script>
+<!-- EmailJS End -->
+
+</body>
+</html>
 </html>
