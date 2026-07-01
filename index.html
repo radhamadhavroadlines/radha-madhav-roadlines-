@@ -569,27 +569,17 @@ document.getElementById("contact-form").addEventListener("submit", function(e){
 e.preventDefault();
 
 emailjs.sendForm(
-"service_8a3nxf2",
-"template_nrwnfhj",
-this
+    "service_tdgt8em",
+    "template_nrwnfhj",
+    this
 )
-
-.then(function(){
-
-alert("Thank you! Your enquiry has been sent successfully.");
-
-document.getElementById("contact-form").reset();
-
+.then(function () {
+    alert("Thank you! Your enquiry has been sent successfully.");
+    document.getElementById("contact-form").reset();
 })
-
-.catch(function(error){
-
-alert("Something went wrong.");
-
-console.log(error);
-
-});
-
+.catch(function (error) {
+    console.log(error);
+    alert("Error: " + error.text);
 });
 
 </script>
