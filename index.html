@@ -578,10 +578,12 @@ emailjs.sendForm(
     document.getElementById("contact-form").reset();
 })
 .catch(function (error) {
-    console.log(error);
-    alert("Error: " + error.text);
+    console.log("Full Error:", error);
+    alert(
+        "Status: " + error.status +
+        "\nMessage: " + error.text
+    );
 });
-
 </script>
 <!-- EmailJS End -->
 
