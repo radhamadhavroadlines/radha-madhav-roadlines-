@@ -3,123 +3,173 @@
 // Premium JavaScript
 // ==============================
 
-// Smooth Scrolling
-document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', function(e) {
+// Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
         e.preventDefault();
 
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(this.getAttribute("href"));
 
-        if(target){
-            window.scrollTo({
-                top: target.offsetTop - 70,
-                behavior: 'smooth'
+        if (target) {
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
             });
         }
     });
 });
 
+// Sticky Header Shadow
+const header = document.querySelector("header");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 50) {
+
+        header.style.background = "#002b5c";
+        header.style.boxShadow = "0 10px 25px rgba(0,0,0,.25)";
+
+    } else {
+
+        header.style.background = "rgba(0,40,85,.95)";
+        header.style.boxShadow = "none";
+
+    }
+
+});
+
 // Counter Animation
 const counters = document.querySelectorAll(".box h2");
 
-counters.forEach(counter => {
+const speed = 80;
 
-    const text = counter.innerText;
+const runCounter = () => {
 
-    const number = parseInt(text.replace(/\D/g, ""));
+    counters.forEach(counter => {
 
-    if(isNaN(number)) return;
+        const text = counter.innerText;
 
-    let start = 0;
+        if (text.includes("PAN")) return;
 
-    const speed = Math.ceil(number / 80);
+        const target = parseInt(text.replace("+",""));
 
-    function update(){
+        let count = 0;
 
-        start += speed;
+        const update = () => {
 
-        if(start < number){
+            count += Math.ceil(target / speed);
 
-            counter.innerText = start + "+";
+            if (count >= target) {
 
-            requestAnimationFrame(update);
+                counter.innerText = target + "+";
 
-        }else{
+            } else {
 
-            counter.innerText = text;
+                counter.innerText = count + "+";
+
+                requestAnimationFrame(update);
+
+            }
+
+        };
+
+        update();
+
+    });
+
+};
+
+// Run Counter Once
+let started = false;
+
+window.addEventListener("scroll", () => {
+
+    const counterSection = document.querySelector(".counter");
+
+    if (!counterSection) return;
+
+    const top = counterSection.offsetTop - 500;
+
+    if (window.scrollY > top && !started) {
+
+        runCounter();
+
+        started = true;
+
+    }
+
+});
+
+// Fade Animation
+const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
 
         }
 
-    }
+    });
 
-    update();
+}, {
+    threshold: 0.15
+});
+
+document.querySelectorAll(
+".service-card,.fleet-card,.gallery img,.box,.clients img,.contact-form"
+).forEach(item => {
+
+    item.style.opacity = "0";
+    item.style.transform = "translateY(40px)";
+    item.style.transition = ".7s";
+
+    observer.observe(item);
 
 });
 
-// Sticky Header Shadow
+// Active Navbar
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav ul li a");
+
 window.addEventListener("scroll", () => {
 
-    const header = document.querySelector("header");
+    let current = "";
 
-    if(window.scrollY > 50){
+    sections.forEach(section => {
 
-        header.style.boxShadow="0 8px 25px rgba(0,0,0,.25)";
+        const sectionTop = section.offsetTop - 120;
 
-    }else{
+        if (pageYOffset >= sectionTop) {
 
-        header.style.boxShadow="0 5px 20px rgba(0,0,0,.15)";
+            current = section.getAttribute("id");
 
-    }
+        }
 
-});
+    });
 
-// Scroll To Top Button
-const topBtn = document.createElement("button");
+    navLinks.forEach(link => {
 
-topBtn.innerHTML = "↑";
+        link.classList.remove("active");
 
-topBtn.id = "topBtn";
+        if (link.getAttribute("href") === "#" + current) {
 
-document.body.appendChild(topBtn);
+            link.classList.add("active");
 
-topBtn.style.position="fixed";
-topBtn.style.bottom="25px";
-topBtn.style.right="25px";
-topBtn.style.width="50px";
-topBtn.style.height="50px";
-topBtn.style.borderRadius="50%";
-topBtn.style.border="none";
-topBtn.style.background="#ff3c00";
-topBtn.style.color="#fff";
-topBtn.style.fontSize="24px";
-topBtn.style.cursor="pointer";
-topBtn.style.display="none";
-topBtn.style.zIndex="9999";
-
-window.addEventListener("scroll",()=>{
-
-    if(window.scrollY>300){
-
-        topBtn.style.display="block";
-
-    }else{
-
-        topBtn.style.display="none";
-
-    }
-
-});
-
-topBtn.addEventListener("click",()=>{
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
+        }
 
     });
 
 });
 
-console.log("RADHA MADHAV ROADLINES Website Loaded Successfully");
+// Current Year
+const copyright = document.querySelector(".copyright");
+
+if (copyright) {
+
+    copyright.innerHTML =
+    `© ${new Date().getFullYear()} RADHA MADHAV ROADLINES. All Rights Reserved.`;
+
+}
